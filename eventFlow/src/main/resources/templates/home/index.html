@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="text-center">
+                    <div class="">
+                        <h2 class="fs-1 mt-5" th:text="${msgPt1}"></h2>
+                        <span class="fs-1 text-danger" th:text="${msgPt2}"></span><span class="fs-1 text-primary" th:text="${msgPt3}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+

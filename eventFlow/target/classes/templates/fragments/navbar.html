@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+
+<body>
+
+<nav layout:fragment="navbar" class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><span class="text-danger fs-5">Event</span><span class="text-primary fs-5">Flow</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active fs-5" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle fs-5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Evento
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item fs-5" href="/eventos/form">Cadastrar evento</a></li>
+              <li><a class="dropdown-item fs-5" href="/eventos">Listar eventos</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <div class="dropdown">
+            <a class="nav-link dropdown-toggle fs-5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Cidade
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item fs-5" href="/cidades/form">Cadastrar cidade</a></li>
+              <li><a class="dropdown-item fs-5" href="/cidades">Listar cidades</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+</html>
+

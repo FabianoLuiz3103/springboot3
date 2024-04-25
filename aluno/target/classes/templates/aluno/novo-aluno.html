@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Cadastro de aluno</h1>
+                <div class="alert alert-success alert-dismissible fade show" th:if="${sucesso}">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <span th:text="${sucesso}"></span>
+                </div>
+                <form method="post" action="#" th:action="@{/alunos/salvar}" th:object="${aluno}">
+
+                    <div class="row mb-3">
+                        <label for="nome" class="col-sm-1 col-form-label">Nome:</label>
+                        <div class="col-sm-5">
+                            <!--  th:field   associa input com cada campo com o atibuto do obj-->
+                            <input id="nome" class="form-control" type="text" th:field="*{nome}" />
+                        </div>
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+                            <!-- th:if="${#fields.hasErrors('nome') - associado com o controller no BindingResult result -->
+                            <!-- th:errors="*{nome} mostra o erro-->
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="email" class="col-sm-1 col-form-label">Email:</label>
+                        <div class="col-sm-3">
+                            <input id="email" class="form-control" type="text" th:field="*{email}">
+                        </div>
+                        <div class="col-sm-5">
+                            <span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="rm" class="col-sm-1 col-form-label">RM:</label>
+                        <div class="col-sm-2">
+                            <input id="rm" class="form-control" type="text" th:field="*{rm}">
+                        </div>
+                        <div class="col-sm-5">
+								<span class="mensagem" th:if="${#fields.hasErrors('rm')}"
+                                      th:errors="*{rm}"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="turma" class="col-sm-1 col-form-label">Turma:</label>
+                        <div class="col-sm-2">
+                            <input id="turma" class="form-control" type="text" th:field="*{turma}">
+                        </div>
+                        <div class="col-sm-5">
+								<span class="mensagem" th:if="${#fields.hasErrors('turma')}"
+                                      th:errors="*{turma}"></span>
+                        </div>
+                    </div>
+
+                    <input class="btn btn-primary" type="submit" value="Salvar" />
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

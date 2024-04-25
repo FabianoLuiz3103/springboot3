@@ -1,0 +1,55 @@
+<html lang="pt-br" layout:decorate="~{template.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Lista de alunos</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Lista de alunos</h1>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>RM</th>
+                        <th>Turma</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--Editar -->
+                    <tr th:if="${alunos.empty}">
+                        <td colspan="4">Sem alunos</td>
+                    </tr>
+                    <!--Editar -->
+                    <tr th:each="aluno : ${alunos}">
+                        <td><span th:text="${aluno.nome}"> Nome </span></td>
+                        <td><span th:text="${aluno.email}"> email </span></td>
+                        <td><span th:text="${aluno.rm}"> rm </span></td>
+                        <td><span th:text="${aluno.turma}"> turma </span></td>
+                        <td>
+                            <a class="btn btn-danger btn-xs"
+                               th:href="@{/alunos/deletar/{id}(id=${aluno.id})}"
+                               th:data-confirm-delete="|Deseja excluir o aluno ${aluno.nome}?|"
+                               onclick="if(!confirm(this.getAttribute('data-confirm-delete'))) return false"
+                            > Excluir</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-xs"
+                            th:href="@{/alunos/editar/{id}(id=${aluno.id})}"
+                            > Editar</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

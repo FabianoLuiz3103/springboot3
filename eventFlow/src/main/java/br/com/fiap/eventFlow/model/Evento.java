@@ -14,7 +14,6 @@ import org.hibernate.validator.constraints.URL;
 /*
  * FIAP 2024
  * @author Fabiano Luiz Santos de Sanatana ---- RM:96044
- * @author Lucas Aguida Mazzetto --------------- RM:93303
  */
 
 //Lombok

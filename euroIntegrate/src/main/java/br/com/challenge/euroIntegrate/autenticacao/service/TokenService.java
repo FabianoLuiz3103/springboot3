@@ -25,7 +25,6 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("API EuroIntegrate")
                     .withSubject(usuario.getUsername())
-                    .withClaim("id", usuario.getUsuario().getId())
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);
         } catch (JWTCreationException exception){

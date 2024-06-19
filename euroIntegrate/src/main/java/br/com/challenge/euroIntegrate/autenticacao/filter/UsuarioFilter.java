@@ -28,11 +28,12 @@ public class UsuarioFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         if(verificarEndopoint(request)){
             var tokenJWT = recuperarToken(request);
             if(tokenJWT != null){
                 var subject = tokenService.getSubject(tokenJWT);
-                var usuario = usuarioRepository.findByEmail(subject).get();
+                var usuario = usuarioRepository.findByEmail(subject).orElseThrow(()->new RuntimeException("Usuário não encontrado"));
                 var usuarioDetails = new UsuarioDetailsImpl(usuario);
                 var authentication = new UsernamePasswordAuthenticationToken(usuarioDetails, null, usuarioDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);

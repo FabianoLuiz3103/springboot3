@@ -4,6 +4,7 @@ import br.com.challenge.euroIntegrate.autenticacao.dto.LoginDTO;
 import br.com.challenge.euroIntegrate.autenticacao.dto.TokenDTO;
 import br.com.challenge.euroIntegrate.autenticacao.usuario.UsuarioDetailsImpl;
 import br.com.challenge.euroIntegrate.autenticacao.repository.UsuarioRepository;
+import br.com.challenge.euroIntegrate.colaborador.repository.ColaboradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,9 +19,6 @@ public class AutenticacaoService {
     @Autowired
     private TokenService tokenService;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
     public TokenDTO autenticarUsuario(LoginDTO login){
         var usernamePasswordAutentication = new UsernamePasswordAuthenticationToken(login.email(), login.senha());
         var authentication = authenticationManager.authenticate(usernamePasswordAutentication);
@@ -28,4 +26,5 @@ public class AutenticacaoService {
         return new TokenDTO(tokenService.gerarToken(usuarioDetails));
 
     }
+
 }

@@ -1,5 +1,6 @@
 package br.com.challenge.euroIntegrate.colaborador.model;
 
+import br.com.challenge.euroIntegrate.colaborador.dto.DadosAtualizacaoAvatar;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -20,8 +21,11 @@ public class Colaborador {
     private Long id;
     private String primeiroNome;
     private String sobrenome;
+    @Column(unique = true)
     private String cpf;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String telefone;
     private LocalDate dataAdmissao;
     private String avatar;
@@ -29,10 +33,25 @@ public class Colaborador {
     private Integer qtdRespondidas;
     private Integer pontuacao;
     private Integer qtdCertas;
-    private Double porcPorgresso;
+    private Double porcProgresso;
     private Double porcAcertos;
 
-    //id departamento
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_departamento", nullable = false)
+    private Departamento departamento;
 
-    //id integracao
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_integracao")
+    private Integracao integracao;
+
+    @OneToOne(mappedBy = "colaborador")
+    private ColaboradorRh colaboradorRh;
+
+
+
+    public void atualizarAvatar(DadosAtualizacaoAvatar dados){
+        if(dados.avatar() != null){
+            this.avatar = dados.avatar();
+        }
+    }
 }

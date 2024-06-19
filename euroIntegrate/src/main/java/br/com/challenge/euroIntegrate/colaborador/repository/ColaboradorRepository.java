@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> {
 
     Optional<Colaborador> findByEmail(String email);
+    Colaborador getReferenceByEmail(String email);
 }

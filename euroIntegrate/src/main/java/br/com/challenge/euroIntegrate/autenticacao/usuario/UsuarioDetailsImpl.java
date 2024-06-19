@@ -1,4 +1,4 @@
-package br.com.challenge.euroIntegrate.model.usuario;
+package br.com.challenge.euroIntegrate.autenticacao.usuario;
 
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,8 +1,8 @@
-package br.com.challenge.euroIntegrate.controller;
+package br.com.challenge.euroIntegrate.autenticacao.controller;
 
-import br.com.challenge.euroIntegrate.dto.LoginDTO;
-import br.com.challenge.euroIntegrate.dto.TokenDTO;
-import br.com.challenge.euroIntegrate.service.AutenticacaoService;
+import br.com.challenge.euroIntegrate.autenticacao.dto.LoginDTO;
+import br.com.challenge.euroIntegrate.autenticacao.dto.TokenDTO;
+import br.com.challenge.euroIntegrate.autenticacao.service.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
-package br.com.challenge.euroIntegrate.service;
+package br.com.challenge.euroIntegrate.autenticacao.service;
 
-import br.com.challenge.euroIntegrate.model.usuario.Usuario;
-import br.com.challenge.euroIntegrate.model.usuario.UsuarioDetailsImpl;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.UsuarioDetailsImpl;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

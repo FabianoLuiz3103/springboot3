@@ -1,8 +1,8 @@
-package br.com.challenge.euroIntegrate.service;
+package br.com.challenge.euroIntegrate.autenticacao.service;
 
-import br.com.challenge.euroIntegrate.model.usuario.Usuario;
-import br.com.challenge.euroIntegrate.model.usuario.UsuarioDetailsImpl;
-import br.com.challenge.euroIntegrate.repository.UsuarioRepository;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.Usuario;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.UsuarioDetailsImpl;
+import br.com.challenge.euroIntegrate.autenticacao.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

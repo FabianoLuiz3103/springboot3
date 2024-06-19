@@ -1,6 +1,6 @@
-package br.com.challenge.euroIntegrate.dto;
+package br.com.challenge.euroIntegrate.autenticacao.dto;
 
-import br.com.challenge.euroIntegrate.model.usuario.Role;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.Role;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package br.com.challenge.euroIntegrate.security;
+package br.com.challenge.euroIntegrate.autenticacao.security;
 
-import br.com.challenge.euroIntegrate.filter.UsuarioFilter;
+import br.com.challenge.euroIntegrate.autenticacao.filter.UsuarioFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

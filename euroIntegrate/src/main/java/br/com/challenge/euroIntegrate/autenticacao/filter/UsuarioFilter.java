@@ -1,9 +1,9 @@
-package br.com.challenge.euroIntegrate.filter;
+package br.com.challenge.euroIntegrate.autenticacao.filter;
 
-import br.com.challenge.euroIntegrate.model.usuario.UsuarioDetailsImpl;
-import br.com.challenge.euroIntegrate.repository.UsuarioRepository;
-import br.com.challenge.euroIntegrate.security.SecurityConfiguration;
-import br.com.challenge.euroIntegrate.service.TokenService;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.UsuarioDetailsImpl;
+import br.com.challenge.euroIntegrate.autenticacao.repository.UsuarioRepository;
+import br.com.challenge.euroIntegrate.autenticacao.security.SecurityConfiguration;
+import br.com.challenge.euroIntegrate.autenticacao.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 @Component

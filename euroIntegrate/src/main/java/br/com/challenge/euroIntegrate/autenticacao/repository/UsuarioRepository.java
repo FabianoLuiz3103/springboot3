@@ -1,6 +1,6 @@
-package br.com.challenge.euroIntegrate.repository;
+package br.com.challenge.euroIntegrate.autenticacao.repository;
 
-import br.com.challenge.euroIntegrate.model.usuario.Usuario;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

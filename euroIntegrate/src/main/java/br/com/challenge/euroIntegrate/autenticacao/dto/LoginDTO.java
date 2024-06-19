@@ -1,4 +1,4 @@
-package br.com.challenge.euroIntegrate.dto;
+package br.com.challenge.euroIntegrate.autenticacao.dto;
 
 public record LoginDTO(
         String email,

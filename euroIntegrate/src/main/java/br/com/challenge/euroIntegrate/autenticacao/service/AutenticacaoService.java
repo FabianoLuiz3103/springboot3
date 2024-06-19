@@ -1,10 +1,9 @@
-package br.com.challenge.euroIntegrate.service;
+package br.com.challenge.euroIntegrate.autenticacao.service;
 
-import br.com.challenge.euroIntegrate.dto.LoginDTO;
-import br.com.challenge.euroIntegrate.dto.TokenDTO;
-import br.com.challenge.euroIntegrate.model.usuario.UsuarioDetailsImpl;
-import br.com.challenge.euroIntegrate.repository.UsuarioRepository;
-import br.com.challenge.euroIntegrate.security.SecurityConfiguration;
+import br.com.challenge.euroIntegrate.autenticacao.dto.LoginDTO;
+import br.com.challenge.euroIntegrate.autenticacao.dto.TokenDTO;
+import br.com.challenge.euroIntegrate.autenticacao.usuario.UsuarioDetailsImpl;
+import br.com.challenge.euroIntegrate.autenticacao.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

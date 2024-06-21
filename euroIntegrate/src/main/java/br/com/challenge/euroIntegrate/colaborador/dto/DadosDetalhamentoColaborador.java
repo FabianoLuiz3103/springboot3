@@ -1,6 +1,7 @@
 package br.com.challenge.euroIntegrate.colaborador.dto;
 
 import br.com.challenge.euroIntegrate.colaborador.model.Colaborador;
+import br.com.challenge.euroIntegrate.integracao.model.Status;
 import jakarta.persistence.Column;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ public record DadosDetalhamentoColaborador(
         String telefone,
         LocalDate dataAdmissao,
         String avatar,
-        String stsIntegracao,
+        Status stsIntegracao,
         Integer qtdRespondidas,
         Integer pontuacao,
         Integer qtdCertas,

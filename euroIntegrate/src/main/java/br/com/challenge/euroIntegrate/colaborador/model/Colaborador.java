@@ -1,8 +1,11 @@
 package br.com.challenge.euroIntegrate.colaborador.model;
 
+import br.com.challenge.euroIntegrate.administrador.model.ColaboradorRh;
 import br.com.challenge.euroIntegrate.colaborador.dto.DadosAtualizacaoAvatar;
+import br.com.challenge.euroIntegrate.integracao.model.Integracao;
+import br.com.challenge.euroIntegrate.integracao.model.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -29,18 +32,20 @@ public class Colaborador {
     private String telefone;
     private LocalDate dataAdmissao;
     private String avatar;
-    private String stsIntegracao;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Status stsIntegracao;
     private Integer qtdRespondidas;
     private Integer pontuacao;
     private Integer qtdCertas;
     private Double porcProgresso;
     private Double porcAcertos;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_integracao")
     private Integracao integracao;
 

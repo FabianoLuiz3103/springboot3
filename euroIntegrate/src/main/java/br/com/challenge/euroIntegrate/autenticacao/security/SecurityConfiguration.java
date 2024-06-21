@@ -36,15 +36,21 @@ public class SecurityConfiguration {
     // Endpoints que só podem ser acessador por usuários com permissão de cliente
     public static final String [] ENDPOINTS_CUSTOMER = {
             "/users/test/customer",
+            "colaboradores/home",
+            "colaboradores/perfil",
+            "colaboradores/avatar",
+            "colaboradores/videos",
+            "colaboradores/normas-departamento",
+            "colaboradores/normas-gerais"
 
     };
 
     // Endpoints que só podem ser acessador por usuários com permissão de administrador
     public static final String [] ENDPOINTS_ADMIN = {
             "/users/test/administrator",
-            "colaboradores/home",
-            "colaboradores/perfil",
-            "colaboradores/avatar"
+            "/rh/cadastrar-integracao",
+            "/rh/listar-integracoes"
+
     };
     // SEM O H2 PODE SER ESSE TALVEZ...
 //    @Bean

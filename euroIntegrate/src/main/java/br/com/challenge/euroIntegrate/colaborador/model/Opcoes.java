@@ -3,28 +3,23 @@ package br.com.challenge.euroIntegrate.colaborador.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.*;
-
 @Entity
-@Table(name = "tbl_videos")
+@Table(name="tbl_opcoes")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode(of={"id"})
-public class Videos {
+public class Opcoes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String linkVideo;
+    private String opcao;
+    private String texto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_departamento", nullable = false)
-    private Departamento departamento;
-
-    @OneToMany(mappedBy = "video")
-    private Set<Perguntas> perguntas = new LinkedHashSet<>();
-
+    @JoinColumn(name = "id_pergunta")
+    private Perguntas pergunta;
 
 }

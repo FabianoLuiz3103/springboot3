@@ -3,8 +3,7 @@ package br.com.challenge.euroIntegrate.colaborador.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="tbl_perguntas")
@@ -22,13 +21,15 @@ public class Perguntas {
     private String respostaCorreta;
     private String tipo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_departamento", nullable = false)
-    private Departamento departamento;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_norma")
+    private Normas norma;
 
-    @ManyToMany(mappedBy = "perguntas", fetch = FetchType.EAGER)
-    private Set<Videos> videos = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_video")
+    private Videos video;
 
-    @ManyToMany(mappedBy = "perguntas", fetch = FetchType.EAGER)
-    private Set<Normas> normas = new HashSet<>();
+    @OneToMany(mappedBy = "pergunta")
+    private Set<Opcoes> opcoes = new LinkedHashSet<>();
+
 }

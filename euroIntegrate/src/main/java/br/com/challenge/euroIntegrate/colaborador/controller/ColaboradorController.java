@@ -1,8 +1,7 @@
 package br.com.challenge.euroIntegrate.colaborador.controller;
 
-import br.com.challenge.euroIntegrate.colaborador.dto.DadosAtualizacaoAvatar;
-import br.com.challenge.euroIntegrate.colaborador.dto.DadosDetalhamentoColaborador;
-import br.com.challenge.euroIntegrate.colaborador.dto.DadosHomeColaborador;
+import br.com.challenge.euroIntegrate.colaborador.dto.*;
+import br.com.challenge.euroIntegrate.colaborador.model.Normas;
 import br.com.challenge.euroIntegrate.colaborador.service.ColaboradorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/colaboradores")
@@ -21,25 +22,47 @@ public class ColaboradorController {
 
     @GetMapping("/home")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<DadosHomeColaborador> telaHome(Authentication authentication) {
+    public ResponseEntity<DadosDetalhamentoColaborador> telaHome(Authentication authentication) {
         String email = authentication.getName();
-        return new ResponseEntity<>(
-                new DadosHomeColaborador(colaboradorService.dadosColaborador(email)), HttpStatus.OK);
+        return new ResponseEntity<>(colaboradorService.dadosColaborador(email), HttpStatus.OK);
     }
     @GetMapping("/perfil")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<DadosDetalhamentoColaborador> telaPerfil(Authentication authentication){
         String email = authentication.getName();
-        return new ResponseEntity<>(
-                new DadosDetalhamentoColaborador(colaboradorService.dadosColaborador(email)), HttpStatus.OK);
+        return new ResponseEntity<>(colaboradorService.dadosColaborador(email), HttpStatus.OK);
     }
 
     @PatchMapping("/avatar")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<DadosDetalhamentoColaborador> atualizarAvatar(@RequestBody @Valid DadosAtualizacaoAvatar dados){
         var colaborador = colaboradorService.atualizacaoAvatar(dados);
-        return new ResponseEntity<>(
-                new DadosDetalhamentoColaborador(colaborador), HttpStatus.OK);
+        return new ResponseEntity<>(colaborador, HttpStatus.OK);
     }
+
+    @GetMapping("/videos")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<DadosVideos>> telaVideos(Authentication authentication) {
+        String email = authentication.getName();
+        var videosComPerguntas = colaboradorService.carregarVideosComPerguntas(email);
+        return new ResponseEntity<>(videosComPerguntas, HttpStatus.OK);
+
+    }
+    @GetMapping("/normas-departamento")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<DadosNormas>> telaNormasDepartamento(Authentication authentication){
+        String email = authentication.getName();
+        var normasComPerguntas = colaboradorService.carregarNormasComPerguntasDept(email);
+        return new ResponseEntity<>(normasComPerguntas, HttpStatus.OK);
+    }
+
+    @GetMapping("/normas-gerais")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<List<DadosNormas>> telaNormasGerais(){
+        var normasComPerguntas = colaboradorService.carregarNormasComPerguntasGeral();
+        return new ResponseEntity<>(normasComPerguntas, HttpStatus.OK);
+    }
+
 
 
 }

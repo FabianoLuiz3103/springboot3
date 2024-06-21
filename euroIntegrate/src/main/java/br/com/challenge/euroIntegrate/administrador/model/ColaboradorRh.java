@@ -1,5 +1,7 @@
-package br.com.challenge.euroIntegrate.colaborador.model;
+package br.com.challenge.euroIntegrate.administrador.model;
 
+import br.com.challenge.euroIntegrate.colaborador.model.Colaborador;
+import br.com.challenge.euroIntegrate.integracao.model.Integracao;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +22,7 @@ public class ColaboradorRh {
     private Long id;
     private String emailRh;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_colaborador", nullable = false)
     private Colaborador colaborador;
 

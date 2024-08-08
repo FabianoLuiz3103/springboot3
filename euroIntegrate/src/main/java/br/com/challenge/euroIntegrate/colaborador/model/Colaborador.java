@@ -31,6 +31,7 @@ public class Colaborador {
     @Column(unique = true)
     private String telefone;
     private LocalDate dataAdmissao;
+    @Column(length = 500)
     private String avatar;
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -40,7 +41,8 @@ public class Colaborador {
     private Integer qtdCertas;
     private Double porcProgresso;
     private Double porcAcertos;
-
+    //Private String numeroMatricula
+    //private LocalDate dataNascimento
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;

@@ -2,6 +2,8 @@
 INSERT INTO usuarios (email, senha) VALUES ('fabianojesus1991@gmail.com', '$2a$12$.bPF9WkGJjzfKsxe10UhFeu5wyPj8LYVKVKm7ZRv6jjC.zkkAHg5W');
 -- 310331
 INSERT INTO usuarios (email, senha) VALUES ('faah772@gmail.com', '$2a$12$K8vGtJq3q4fz7BRRXSOg/u.txCUIv3pXE1LBsJZPWoeFLhXs9mUDS');
+-- 121212
+INSERT INTO usuarios (email, senha) VALUES ('larissa1.almeida@example.com', '$2a$12$svsF9WZ5UKHoRTKb69FbnOpKntgOni41W6F2C.1acvJ9ur3HYJR66');
 
 INSERT INTO roles (name) VALUES ('ROLE_ADMINISTRATOR');
 INSERT INTO roles (name) VALUES ('ROLE_CUSTOMER');
@@ -9,7 +11,7 @@ INSERT INTO roles (name) VALUES ('ROLE_CUSTOMER');
 
 INSERT INTO users_roles (role_id, user_id) VALUES (2,1);
 INSERT INTO users_roles (role_id, user_id) VALUES (1,2);
-
+INSERT INTO users_roles (role_id, user_id) VALUES (2,3);
 
 INSERT INTO tbl_departamento (nome) VALUES ('Tecnologia da Informação (TI)');
 INSERT INTO tbl_departamento (nome) VALUES ('Financeiro');
@@ -86,7 +88,7 @@ INSERT INTO tbl_opcoes (opcao, texto, id_pergunta) VALUES ('D', 'Texto da opcao 
 
 INSERT INTO tbl_integracao (data_inicio, hora_inicio, data_fim, hora_fim, status, qtd_colaboradores, media_progresso, media_acertos, id_rh, id_departamento) VALUES ('2024-05-25', '08:30', '2024-05-30', '17:30', 'FINALIZADO', 8, 40.0, 65.0, 1, 2);
 
-INSERT INTO tbl_colaborador (primeiro_nome, sobrenome, cpf, email, telefone, data_admissao, avatar, sts_integracao, qtd_respondidas, pontuacao, qtd_certas, porc_progresso, porc_acertos, id_departamento, id_integracao) VALUES ('Larissa', 'Almeida', '789.092.345-66', 'larissa1.almeida@example.com', '789012349', '2024-06-25', 'avatar1.png', 'FINALIZADO', 10, 78, 6, 45.2, 72.5, 2, 1);
+INSERT INTO tbl_colaborador (primeiro_nome, sobrenome, cpf, email, telefone, data_admissao, avatar, sts_integracao, qtd_respondidas, pontuacao, qtd_certas, porc_progresso, porc_acertos, id_departamento, id_integracao) VALUES ('Larissa', 'Almeida', '789.092.345-66', 'larissa1.almeida@example.com', '789012349', '2024-06-25', '{"HairStyle":"Bald","HairColor":"Auburn","FacialHairType":"Nothing","FacialHairColor":"Auburn","EyeType":"Close","EyebrowType":"Angry","Nose":"Default","MouthType":"Concerned","SkinColor":"Tanned","OutfitType":"BlazerTShirt","OutfitColor":"Black","Accessory":"Nothing","Background":"Transparent"}', 'FINALIZADO', 10, 78, 6, 45.2, 72.5, 2, 1);
 INSERT INTO tbl_colaborador (primeiro_nome, sobrenome, cpf, email, telefone, data_admissao, avatar, sts_integracao, qtd_respondidas, pontuacao, qtd_certas, porc_progresso, porc_acertos, id_departamento, id_integracao) VALUES ('João', 'Silva', '123.496.789-00', 'joao1.silva@example.com', '987654329', '2024-06-25', 'avatar2.png', 'FINALIZADO', 5, 36, 3, 27.8, 60.0, 2, 1);
 INSERT INTO tbl_colaborador (primeiro_nome, sobrenome, cpf, email, telefone, data_admissao, avatar, sts_integracao, qtd_respondidas, pontuacao, qtd_certas, porc_progresso, porc_acertos, id_departamento, id_integracao) VALUES ('Maria', 'Santos', '987.694.321-00', 'maria1.santos@example.com', '654987329', '2024-06-25', 'avatar3.png', 'FINALIZADO', 8, 60, 5, 36.7, 68.3, 2, 1);
 INSERT INTO tbl_colaborador (primeiro_nome, sobrenome, cpf, email, telefone, data_admissao, avatar, sts_integracao, qtd_respondidas, pontuacao, qtd_certas, porc_progresso, porc_acertos, id_departamento, id_integracao) VALUES ('Pedro', 'Oliveira', '456.799.123-00', 'pedro1.oliveira@example.com', '321654989', '2024-06-25', 'avatar4.png', 'FINALIZADO', 12, 92, 9, 54.1, 78.9, 2, 1);

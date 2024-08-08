@@ -15,6 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -41,7 +49,7 @@ public class SecurityConfiguration {
             "colaboradores/avatar",
             "colaboradores/videos",
             "colaboradores/normas-departamento",
-            "colaboradores/normas-gerais"
+            "colaboradores/normas-gerais",
 
     };
 
@@ -52,22 +60,7 @@ public class SecurityConfiguration {
             "/rh/listar-integracoes"
 
     };
-    // SEM O H2 PODE SER ESSE TALVEZ...
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-//        return httpSecurity.csrf(AbstractHttpConfigurer::disable)
-//                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authorizeHttpRequests(req -> {
-//                            req.requestMatchers(ENDPOINTS_WITH_AUTHENTICATION_NOT_REQUIRED).permitAll();
-//                            req.requestMatchers(ENDPOINTS_WITH_AUTHENTICATION_REQUIRED).authenticated();
-//                            req.requestMatchers(ENDPOINTS_ADMIN).hasRole("ADMINISTRATOR"); // Repare que não é necessário colocar "ROLE" antes do nome, como fizemos na definição das roles
-//                            req.requestMatchers(ENDPOINTS_CUSTOMER).hasRole("CUSTOMER");
-//                            req.anyRequest().denyAll();
-//                }).addFilterBefore(usuarioFilter, UsernamePasswordAuthenticationFilter.class)
-//                .build();
-//    }
 
-// PARA USO DO H2 TEM QUE SER ESSE CÓDIGO ABAIXO
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -83,8 +76,21 @@ public class SecurityConfiguration {
                 .headers(headers -> headers
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)) // Configuração para permitir o uso do console H2 em um iframe
                 )
+                .cors(withDefaults())
                 .addFilterBefore(usuarioFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:51533")); // Substitua pelo URL do Flutter
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean

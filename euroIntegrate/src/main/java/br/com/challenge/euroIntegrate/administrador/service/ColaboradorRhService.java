@@ -47,7 +47,7 @@ public class ColaboradorRhService {
 
 
     @Transactional
-    @Scheduled(fixedRate = 120000) // 2 minutos
+    @Scheduled(fixedRate = 12000000) // 2 minutos
     public void checkDateAndUpdateDatabase() {
         try {
             LocalDateTime now = LocalDateTime.now();

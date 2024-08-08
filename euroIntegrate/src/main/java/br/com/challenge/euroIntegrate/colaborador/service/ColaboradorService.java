@@ -21,6 +21,11 @@ public class ColaboradorService {
     @Autowired
     NormasRepository normasRepository;
 
+    @Transactional(readOnly = true)
+    public DadosHomeColaborador dadosHomeColaborador(String email) {
+        return new DadosHomeColaborador(colaboradorRepository.findByEmail(email).orElseThrow(
+                () -> new RuntimeException("Colaborador não encontrado!")));
+    }
 
     @Transactional(readOnly = true)
     public DadosDetalhamentoColaborador dadosColaborador(String email) {

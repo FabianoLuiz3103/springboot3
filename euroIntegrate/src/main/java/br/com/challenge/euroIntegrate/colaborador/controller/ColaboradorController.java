@@ -22,9 +22,9 @@ public class ColaboradorController {
 
     @GetMapping("/home")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<DadosDetalhamentoColaborador> telaHome(Authentication authentication) {
+    public ResponseEntity<DadosHomeColaborador> telaHome(Authentication authentication) {
         String email = authentication.getName();
-        return new ResponseEntity<>(colaboradorService.dadosColaborador(email), HttpStatus.OK);
+        return new ResponseEntity<>(colaboradorService.dadosHomeColaborador(email), HttpStatus.OK);
     }
     @GetMapping("/perfil")
     @PreAuthorize("isAuthenticated()")

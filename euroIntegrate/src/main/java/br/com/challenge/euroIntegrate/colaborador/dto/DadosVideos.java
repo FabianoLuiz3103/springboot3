@@ -14,15 +14,17 @@ public record DadosVideos(
         Long id,
         String linkVideo,
         String nomeDepartamento,
-        List<DadosPerguntas> perguntas
+        List<DadosPerguntas> perguntas,
+        double porcProgresso
 ) {
 
-    public DadosVideos(Videos videos, List<DadosPerguntas> perguntas){
+    public DadosVideos(Videos videos, List<DadosPerguntas> perguntas, double porcProgresso){
         this(
                 videos.getId(),
                 videos.getLinkVideo(),
                 videos.getDepartamento().getNome(),
-                perguntas
+                perguntas,
+                porcProgresso
         );
     }
 }

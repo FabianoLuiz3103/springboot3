@@ -20,6 +20,9 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> 
     @Query("SELECT c.departamento.id FROM Colaborador c WHERE c.email = :email")
     Optional<Long> findDepartamentoIdByEmail(@Param("email") String email);
 
+    @Query("SELECT c.porcProgresso FROM Colaborador c WHERE c.email = :email")
+    Optional<Double> findPorcProgressoByEmail(@Param("email") String email);
+
     @Query("SELECT COUNT(c) FROM Colaborador c WHERE c.departamento.id = :idDept AND c.stsIntegracao = 'NAO_FEZ'")
     int countByDepartamentoIdAndStatus(@Param("idDept") Long idDept);
 

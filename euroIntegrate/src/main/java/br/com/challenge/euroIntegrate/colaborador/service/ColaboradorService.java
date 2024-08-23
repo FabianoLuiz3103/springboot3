@@ -34,8 +34,8 @@ public class ColaboradorService {
     }
 
     @Transactional
-    public DadosDetalhamentoColaborador atualizacaoAvatar(DadosAtualizacaoAvatar dados) {
-        var colaborador = colaboradorRepository.getReferenceByEmail(dados.email());
+    public DadosDetalhamentoColaborador atualizacaoAvatar(DadosAtualizacaoAvatar dados, String email) {
+        var colaborador = colaboradorRepository.getReferenceByEmail(email);
         colaborador.atualizarAvatar(dados);
         return new DadosDetalhamentoColaborador(colaborador);
     }
@@ -45,6 +45,9 @@ public class ColaboradorService {
     @Transactional(readOnly = true)
     public List<DadosVideos> carregarVideosComPerguntas(String email) {
         Long idDept = colaboradorRepository.findDepartamentoIdByEmail(email).orElseThrow(
+                ()-> new RuntimeException("Colaborador não encontrado!")
+        );
+        double porcProgresso = colaboradorRepository.findPorcProgressoByEmail(email).orElseThrow(
                 ()-> new RuntimeException("Colaborador não encontrado!")
         );
         var videos = videosRepository.findAllByDepartamentoIdWithPerguntasAndOpcoes(idDept);
@@ -58,7 +61,7 @@ public class ColaboradorService {
                                 return new DadosPerguntas(pergunta, opcoes);
                             })
                             .toList();
-                    return new DadosVideos(video, perguntas);
+                    return new DadosVideos(video, perguntas, porcProgresso);
                 })
                 .toList();
     }

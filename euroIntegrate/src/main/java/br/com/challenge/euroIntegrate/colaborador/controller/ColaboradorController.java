@@ -35,8 +35,9 @@ public class ColaboradorController {
 
     @PatchMapping("/avatar")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<DadosDetalhamentoColaborador> atualizarAvatar(@RequestBody @Valid DadosAtualizacaoAvatar dados){
-        var colaborador = colaboradorService.atualizacaoAvatar(dados);
+    public ResponseEntity<DadosDetalhamentoColaborador> atualizarAvatar(@RequestBody @Valid DadosAtualizacaoAvatar dados, Authentication authentication){
+        String email = authentication.getName();
+        var colaborador = colaboradorService.atualizacaoAvatar(dados, email);
         return new ResponseEntity<>(colaborador, HttpStatus.OK);
     }
 

@@ -41,8 +41,8 @@ public class Colaborador {
     private Integer qtdCertas;
     private Double porcProgresso;
     private Double porcAcertos;
-    //Private String numeroMatricula
-    //private LocalDate dataNascimento
+    private String numeroMatricula;
+    private LocalDate dataNascimento;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_departamento", nullable = false)
     private Departamento departamento;

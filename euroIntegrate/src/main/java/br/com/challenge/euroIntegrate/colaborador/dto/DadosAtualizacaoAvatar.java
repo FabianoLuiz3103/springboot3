@@ -5,11 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 
 public record DadosAtualizacaoAvatar(
         @NotBlank
-        String email,
         String avatar
 ) {
 
         public DadosAtualizacaoAvatar(Colaborador colaborador){
-                this(colaborador.getEmail(), colaborador.getAvatar());
+                this(colaborador.getAvatar());
         }
 }

@@ -20,7 +20,10 @@ public record DadosDetalhamentoColaborador(
         Integer pontuacao,
         Integer qtdCertas,
         Double porcProgresso,
-        Double porcAcertos
+        Double porcAcertos,
+        String matricula,
+        LocalDate dataNascimento,
+        DadosDepartamento departamento
 ) {
 
     public DadosDetalhamentoColaborador(Colaborador colaborador){
@@ -38,7 +41,10 @@ public record DadosDetalhamentoColaborador(
                 colaborador.getPontuacao(),
                 colaborador.getQtdCertas(),
                 colaborador.getPorcProgresso(),
-                colaborador.getPorcAcertos()
+                colaborador.getPorcAcertos(),
+                colaborador.getNumeroMatricula(),
+                colaborador.getDataNascimento(),
+                new DadosDepartamento(colaborador.getDepartamento())
         );
     }
 }

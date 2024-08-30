@@ -2,6 +2,7 @@ package br.com.challenge.euroIntegrate.colaborador.model;
 
 import br.com.challenge.euroIntegrate.administrador.model.ColaboradorRh;
 import br.com.challenge.euroIntegrate.colaborador.dto.DadosAtualizacaoAvatar;
+import br.com.challenge.euroIntegrate.colaborador.dto.DadosResponseVideos;
 import br.com.challenge.euroIntegrate.integracao.model.Integracao;
 import br.com.challenge.euroIntegrate.integracao.model.Status;
 import jakarta.persistence.*;
@@ -9,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_colaborador")
@@ -55,10 +57,24 @@ public class Colaborador {
     private ColaboradorRh colaboradorRh;
 
 
-
     public void atualizarAvatar(DadosAtualizacaoAvatar dados){
         if(dados.avatar() != null){
             this.avatar = dados.avatar();
+        }
+    }
+
+    public void atualizarDados(DadosResponseVideos dados){
+        if(dados.porcProgresso() != null){
+            this.porcProgresso = dados.porcProgresso();
+        }
+        if(dados.pontuacao() != null){
+            this.pontuacao = dados.pontuacao();
+        }
+        if(dados.qtdRespondidas() != null){
+            this.qtdRespondidas = dados.qtdRespondidas();
+        }
+        if(dados.qtdCertas() != null){
+            this.qtdCertas = dados.qtdCertas();
         }
     }
 }

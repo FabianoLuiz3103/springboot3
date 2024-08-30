@@ -1,6 +1,7 @@
 package br.com.challenge.euroIntegrate.colaborador.repository;
 
 import br.com.challenge.euroIntegrate.autenticacao.usuario.Usuario;
+import br.com.challenge.euroIntegrate.colaborador.dto.InfosColaboradorTelaVideos;
 import br.com.challenge.euroIntegrate.colaborador.model.Colaborador;
 import br.com.challenge.euroIntegrate.integracao.model.Integracao;
 import br.com.challenge.euroIntegrate.integracao.model.Status;
@@ -15,13 +16,15 @@ import java.util.Optional;
 
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> {
 
-    Optional<Colaborador> findByEmail(String email);
-    Colaborador getReferenceByEmail(String email);
-    @Query("SELECT c.departamento.id FROM Colaborador c WHERE c.email = :email")
-    Optional<Long> findDepartamentoIdByEmail(@Param("email") String email);
+    @Query("SELECT id FROM Colaborador WHERE email = :email")
+    Optional<Long> findIdByEmail(@Param("email") String email);
+    @Query("SELECT c.departamento.id FROM Colaborador c WHERE c.id = :id")
+    Optional<Long> findDepartamentoIdById(@Param("id") Long id);
 
-    @Query("SELECT c.porcProgresso FROM Colaborador c WHERE c.email = :email")
-    Optional<Double> findPorcProgressoByEmail(@Param("email") String email);
+    @Query("SELECT new br.com.challenge.euroIntegrate.colaborador.dto.InfosColaboradorTelaVideos(c.id, c.porcProgresso, c.pontuacao, c.qtdRespondidas, c.qtdCertas) " +
+            "FROM Colaborador c WHERE c.id = :id")
+    Optional<InfosColaboradorTelaVideos> findColaboradorInfoById(@Param("id") Long id);
+
 
     @Query("SELECT COUNT(c) FROM Colaborador c WHERE c.departamento.id = :idDept AND c.stsIntegracao = 'NAO_FEZ'")
     int countByDepartamentoIdAndStatus(@Param("idDept") Long idDept);

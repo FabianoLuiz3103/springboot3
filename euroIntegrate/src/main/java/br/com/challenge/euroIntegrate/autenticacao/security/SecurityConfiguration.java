@@ -44,12 +44,15 @@ public class SecurityConfiguration {
     // Endpoints que só podem ser acessador por usuários com permissão de cliente
     public static final String [] ENDPOINTS_CUSTOMER = {
             "/users/test/customer",
-            "colaboradores/home",
-            "colaboradores/perfil",
-            "colaboradores/avatar",
-            "colaboradores/videos",
-            "colaboradores/normas-departamento",
+            "colaboradores/home/**",
+            "colaboradores/perfil/**",
+            "colaboradores/avatar/**",
+            "colaboradores/videos/**",
+            "colaboradores/normas-departamento/**",
             "colaboradores/normas-gerais",
+            "colaboradores/resposta",
+            "colaboradores/videos-seq/**",
+            "colaboradores/atualizar/**",
 
     };
 
@@ -84,7 +87,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:61145")); // Substitua pelo URL do Flutter
+        configuration.setAllowedOrigins(List.of("http://localhost:65005")); // Substitua pelo URL do Flutter
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

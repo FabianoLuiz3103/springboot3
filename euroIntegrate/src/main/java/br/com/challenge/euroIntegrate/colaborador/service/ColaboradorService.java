@@ -21,35 +21,61 @@ public class ColaboradorService {
     @Autowired
     NormasRepository normasRepository;
 
+    @Autowired
+    RespostaService respostaService;
+
     @Transactional(readOnly = true)
-    public DadosHomeColaborador dadosHomeColaborador(String email) {
-        return new DadosHomeColaborador(colaboradorRepository.findByEmail(email).orElseThrow(
+    public idColaboradorDTO getIdColaborador(String email){
+        var id = colaboradorRepository.findIdByEmail(email).orElseThrow(
+                () -> new RuntimeException("Colaborador não encontrado!")
+        );
+        return new idColaboradorDTO(id);
+    }
+
+    @Transactional(readOnly = true)
+    public DadosHomeColaborador dadosHomeColaborador(Long id) {
+        return new DadosHomeColaborador(colaboradorRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Colaborador não encontrado!")));
     }
 
     @Transactional(readOnly = true)
-    public DadosDetalhamentoColaborador dadosColaborador(String email) {
-        return new DadosDetalhamentoColaborador(colaboradorRepository.findByEmail(email).orElseThrow(
+    public DadosDetalhamentoColaborador dadosColaborador(Long id) {
+        return new DadosDetalhamentoColaborador(colaboradorRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Colaborador não encontrado!")));
     }
 
     @Transactional
-    public DadosDetalhamentoColaborador atualizacaoAvatar(DadosAtualizacaoAvatar dados, String email) {
-        var colaborador = colaboradorRepository.getReferenceByEmail(email);
+    public DadosDetalhamentoColaborador atualizacaoAvatar(DadosAtualizacaoAvatar dados, Long id) {
+        var colaborador = colaboradorRepository.getReferenceById(id);
         colaborador.atualizarAvatar(dados);
         return new DadosDetalhamentoColaborador(colaborador);
     }
 
-
+    @Transactional
+    public DadosDetalhamentoColaborador atualizarDadosColaborador(DadosResponseVideos dados, Long id){
+        var colaborador = colaboradorRepository.getReferenceById(id);
+        colaborador.atualizarDados(dados);
+        return new DadosDetalhamentoColaborador(colaborador);
+    }
 
     @Transactional(readOnly = true)
-    public List<DadosVideos> carregarVideosComPerguntas(String email) {
-        Long idDept = colaboradorRepository.findDepartamentoIdByEmail(email).orElseThrow(
-                ()-> new RuntimeException("Colaborador não encontrado!")
-        );
-        double porcProgresso = colaboradorRepository.findPorcProgressoByEmail(email).orElseThrow(
-                ()-> new RuntimeException("Colaborador não encontrado!")
-        );
+    public DadosVideoSeq dadosVideosSeq(Long id){
+        InfosColaboradorTelaVideos colaboradorInfo = colaboradorRepository.findColaboradorInfoById(id)
+                .orElseThrow(() -> new RuntimeException("Colaborador não encontrado!"));
+
+        Long idColaborador = colaboradorInfo.id();
+        Double porcProgresso = colaboradorInfo.porcProgresso();
+        Integer pontuacao = colaboradorInfo.pontuacao();
+        Integer qtdRespondidas = colaboradorInfo.qtdRespondidas();
+        Integer qtdCertas = colaboradorInfo.qtdCertas();
+        return new DadosVideoSeq(idColaborador, porcProgresso, pontuacao, qtdRespondidas, qtdCertas, respostaService.findAll(idColaborador) );
+    }
+
+    @Transactional(readOnly = true)
+    public List<DadosVideos> carregarVideosComPerguntas(Long id) {
+        Long idDept = colaboradorRepository.findDepartamentoIdById(id).orElseThrow(
+                ()-> new RuntimeException("Colaborador não encontrado!"));
+
         var videos = videosRepository.findAllByDepartamentoIdWithPerguntasAndOpcoes(idDept);
         return videos.stream()
                 .map(video -> {
@@ -61,14 +87,14 @@ public class ColaboradorService {
                                 return new DadosPerguntas(pergunta, opcoes);
                             })
                             .toList();
-                    return new DadosVideos(video, perguntas, porcProgresso);
+                    return new DadosVideos(video, perguntas);
                 })
                 .toList();
     }
 
     @Transactional(readOnly = true)
-    public List<DadosNormas> carregarNormasComPerguntasDept(String email) {
-        Long idDept = colaboradorRepository.findDepartamentoIdByEmail(email).orElseThrow(
+    public List<DadosNormas> carregarNormasComPerguntasDept(Long id) {
+        Long idDept = colaboradorRepository.findDepartamentoIdById(id).orElseThrow(
                 ()-> new RuntimeException("Colaborador não encontrado!"));
         var normas = normasRepository.findAllByDepartamentoIdWithPerguntasAndOpcoes(idDept);
         return perguntasNormas(normas);
@@ -96,6 +122,9 @@ public class ColaboradorService {
                         }
                 ).toList();
     }
+
+
+
 
 
 
